@@ -1,24 +1,40 @@
-BoxLayout:
-    orientation: 'vertical'
-    padding: 10
-    spacing: 10
+MDScreen:
+    md_bg_color: 1, 1, 1, 1  # fond blanc
 
     MDTopAppBar:
-        title: "Tâches"
-        elevation: 4
+        title: "📝 Gestionnaire de Tâches"
+        elevation: 10
+        pos_hint: {"top": 1}
+        md_bg_color: 0.2, 0.6, 0.86, 1  # Bleu
+        specific_text_color: 1, 1, 1, 1
 
-    MDTextField:
-        id: task_input
-        hint_text: "Ajouter une tâche"
-        pos_hint: {"center_x": 0.5}
-        size_hint_x: 0.9
-        mode: "rectangle"
+    BoxLayout:
+        orientation: 'vertical'
+        padding: "16dp"
+        spacing: "10dp"
+        pos_hint: {"top": 0.9}
+        size_hint_y: None
+        height: self.minimum_height
 
-    MDRaisedButton:
-        text: "Ajouter"
-        pos_hint: {"center_x": 0.5}
-        on_release: app.add_task()
+        MDTextField:
+            id: task_input
+            hint_text: "Ajouter une tâche"
+            mode: "rectangle"
+            size_hint_x: 0.95
+            pos_hint: {"center_x": 0.5}
+            helper_text: "Exemple : Réviser KivyMD"
+            helper_text_mode: "on_focus"
 
     ScrollView:
+        size_hint: (1, 0.8)
+        pos_hint: {"top": 0.85}
+
         MDList:
             id: task_list
+            padding: "8dp"
+
+    MDFloatingActionButton:
+        icon: "plus"
+        md_bg_color: 0.2, 0.6, 0.86, 1
+        pos_hint: {"center_x": 0.5, "y": 0.05}
+        on_release: app.add_task()
